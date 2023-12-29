@@ -14,6 +14,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-FoodOrderApp-FoodOrderAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FoodOrderApp-FoodOrderAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A112F2C2E2FC444CB74ADEB4 /* Salina-Trial-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C93BA97DFFA344A9BA5CECC1 /* Salina-Trial-Bold.ttf */; };
+		2C453DBFE9DE4423A9D12CF5 /* Salina-Trial-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BF3C67275A44C9AF1DFA6E /* Salina-Trial-Book.ttf */; };
+		325B63CAD99042848A564B9B /* Salina-Trial-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3FB829D58424A029F249780 /* Salina-Trial-ExtraLight.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FoodOrderApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FoodOrderApp-FoodOrderAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodOrderApp-FoodOrderAppTests.release.xcconfig"; path = "Target Support Files/Pods-FoodOrderApp-FoodOrderAppTests/Pods-FoodOrderApp-FoodOrderAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		C93BA97DFFA344A9BA5CECC1 /* Salina-Trial-Bold.ttf */ = {isa = PBXFileReference; name = "Salina-Trial-Bold.ttf"; path = "../src/assets/fonts/Salina-Trial-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D8BF3C67275A44C9AF1DFA6E /* Salina-Trial-Book.ttf */ = {isa = PBXFileReference; name = "Salina-Trial-Book.ttf"; path = "../src/assets/fonts/Salina-Trial-Book.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E3FB829D58424A029F249780 /* Salina-Trial-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Salina-Trial-ExtraLight.ttf"; path = "../src/assets/fonts/Salina-Trial-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				9DC4C077D901460E8A1C83C4 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -135,6 +142,17 @@
 				00E356EE1AD99517003FC87E /* FoodOrderAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9DC4C077D901460E8A1C83C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C93BA97DFFA344A9BA5CECC1 /* Salina-Trial-Bold.ttf */,
+				D8BF3C67275A44C9AF1DFA6E /* Salina-Trial-Book.ttf */,
+				E3FB829D58424A029F249780 /* Salina-Trial-ExtraLight.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -243,6 +261,9 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A112F2C2E2FC444CB74ADEB4 /* Salina-Trial-Bold.ttf in Resources */,
+				2C453DBFE9DE4423A9D12CF5 /* Salina-Trial-Book.ttf in Resources */,
+				325B63CAD99042848A564B9B /* Salina-Trial-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
