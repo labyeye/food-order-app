@@ -3,25 +3,32 @@ import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
 
 const CartScreen = ({ route }) => {
     const { cartItems } = route.params;
-    console.log('Received Cart Items:', cartItems);
-
-    const renderCartItem = ({ item }) => (
-        <View style={styles.cartItemContainer}>
-            <Image source={item.source} style={styles.cartItemImage} />
-            <View style={styles.cartItemInfo}>
-                <Text style={styles.cartItemName}>{item.foodName}</Text>
-                <Text>{item.price}</Text>
-                {/* Add any other information you want to display for each item */}
-            </View>
-        </View>
-    );
+    console.log(cartItems)
+    const renderCartItem = ({ item }) => {
+      if (!item || !item.foodImage || !item.foodName || !item.price) {
+          // Handle the case where item or its properties are undefined
+          return null;
+      }
+  
+      return (
+          <View style={styles.cartItemContainer}>
+              <Image source={item.foodImage} style={styles.cartItemImage} />
+              <View style={styles.cartItemInfo}>
+                  <Text style={styles.cartItemName}>{item.foodName}</Text>
+                  <Text>{item.price}</Text>
+              </View>
+          </View>
+      );
+  };
+  
+  
 
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Shopping Cart</Text>
             <FlatList
                 data={cartItems}
-                keyExtractor={(item) => item.foodId.toString()} // Use foodId as a unique key
+                keyExtractor={(item) => (item.foodId ? item.foodId.toString() : Math.random().toString())} // Use foodId if available, else use a random key
                 renderItem={renderCartItem}
             />
         </View>
@@ -30,7 +37,10 @@ const CartScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
     container: {
+      marginTop:50,
         flex: 1,
+        borderColor:'black',
+        borderWidth:1,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -40,7 +50,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     cartItemContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         marginBottom: 10,
     },
@@ -55,6 +65,7 @@ const styles = StyleSheet.create({
     },
     cartItemName: {
         fontSize: 16,
+        color: 'black',
         fontWeight: 'bold',
     },
 });

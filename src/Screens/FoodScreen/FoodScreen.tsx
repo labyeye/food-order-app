@@ -8,7 +8,8 @@ const FoodScreen = ({ route, navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [cartItems, setCartItems] = useState([]);
   const navigateToCart = () => {
-    navigation.navigate('CartScreen', { cartItems: cartItems });
+    navigation.navigate('CartScreen', { cartItems: cartItems.map(item => ({ foodImage:item.source,foodName: item.foodName, price: item.price })) });
+;
   };
   const addToCart = (foodItem) => {
     const isItemInCart = cartItems.some(item => item.foodId === foodItem.foodId);
