@@ -1,8 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import { TouchableOpacity, Text, View, StyleSheet, Dimensions, Image, FlatList, Pressable } from "react-native";
+import { foodData } from "../../data";
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
+
 
 const imageArray = [
     { id: '1', source: require('../../Images/Offers/of1.png') },
@@ -17,32 +19,10 @@ const shop = [
     { id: '4', name: ' FreshCo',   dist:'4.6KM',source: require('../../Images/Restraunt/rest4.jpeg') },
     { id: '5', name: ' Fresh',   dist:'1.9KM',source: require('../../Images/Restraunt/rest4.jpeg') },
 ];
-const foodData = [
-    { shopId: '1', foodName: 'Biryani', price: '₹400' ,rate: 4,source: require('../../Images/Food/food1.png')},
-    { shopId: '1', foodName: 'Dosa', price: '₹50' ,rate: 3,source: require('../../Images/Food/food2.png')},
-    { shopId: '1', foodName: 'Paneer', price: '₹150' ,rate: 1,source: require('../../Images/Food/food3.png')},
-    { shopId: '1', foodName: 'Idli', price: '₹30' ,rate: 4,source: require('../../Images/Food/food4.png')},
-    { shopId: '1', foodName: 'Paneer ', price: '₹150' ,rate: 5,source: require('../../Images/Food/food3.png')},
-    { shopId: '1', foodName: 'Upma', price: '₹30' ,rate: 4,source: require('../../Images/Food/food4.png')},
-    { shopId: '2', foodName: 'Pizza', price: '₹800' ,rate: 5,source: require('../../Images/Food/food1.png')},
-    { shopId: '2', foodName: 'Chicken', price: '₹160' ,rate: 4,source: require('../../Images/Food/food2.png')},
-    { shopId: '2', foodName: 'Bun Samosa', price: '₹50' ,rate: 3,source: require('../../Images/Food/food6.png')},
-    { shopId: '2', foodName: 'Podai Idli', price: '₹2' ,rate: 5,source: require('../../Images/Food/food5.png')},
-    { shopId: '2', foodName: 'Paneer', price: '₹9' ,rate: 4,source: require('../../Images/Food/food2.png')},
-    { shopId: '2', foodName: 'Daal', price: '₹5' ,rate: 2,source: require('../../Images/Food/food7.png')},
-    { shopId: '3', foodName: 'Pizza', price: '₹8' ,rate: 3,source: require('../../Images/Food/food4.png')},
-    { shopId: '3', foodName: 'Naan ', price: '₹160' ,rate: 4,source: require('../../Images/Food/food4.png')},
-    { shopId: '3', foodName: 'Samosa', price: '₹50' ,rate: 5,source: require('../../Images/Food/food4.png')},
-    { shopId: '3', foodName: 'Pudina', price: '₹28' ,rate: 2,source: require('../../Images/Food/food4.png')},
-    { shopId: '4', foodName: 'Daal', price: '₹55' ,rate: 4,source: require('../../Images/Food/food4.png')},
-    { shopId: '4', foodName: 'Kaddu', price: '₹60' ,rate: 3,source: require('../../Images/Food/food4.png')},
-    { shopId: '4', foodName: 'Bread ', price: '₹50' ,rate: 2,source: require('../../Images/Food/food4.png')},
-    { shopId: '4', foodName: 'Halua', price: '₹80' ,rate: 1,source: require('../../Images/Food/food4.png')},
 
-    
-  ];
 
 const HomeScreen = ({ navigation }) => {
+    
     const renderImageItem = ({ item }) => (
         <Image source={item.source} style={styles.imageItem} />
     );

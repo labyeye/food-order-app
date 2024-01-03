@@ -6,6 +6,26 @@ const FoodScreen = ({ route, navigation }) => {
   const { shopId, shopImage, shopname, shopdist } = route.params;
   const [foodList, setFoodList] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [cartItems, setCartItems] = useState([]);
+  const navigateToCart = () => {
+    navigation.navigate('CartScreen', { cartItems: cartItems });
+  };
+  const addToCart = (foodItem) => {
+    const isItemInCart = cartItems.some(item => item.foodId === foodItem.foodId);
+
+    if (!isItemInCart) {
+        setCartItems([...cartItems, { ...foodItem, quantity: 1 }]);
+    } else {
+        console.log('Item is already in the cart:', foodItem);
+    }
+};
+useEffect(() => {
+    console.log('Updated Cart Items:', cartItems);
+    navigateToCart(); 
+}, [cartItems]);
+
+
+  
 
   const getFoodData = async () => {
     try {
@@ -19,16 +39,15 @@ const FoodScreen = ({ route, navigation }) => {
       console.error('Error retrieving food data:', error);
     }
   };
+
   useEffect(() => {
     getFoodData();
   }, []);
 
-  // Filter foodList based on search text
   const filteredFoodList = foodList.filter(food =>
     food.foodName.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  // Define a renderItem function for FlatList
   const renderItem = ({ item }) => {
     const renderStars = (rating) => {
       const stars = [];
@@ -37,25 +56,30 @@ const FoodScreen = ({ route, navigation }) => {
       }
       return stars;
     };
+  
     return (
       <View style={styles.fooddataa}>
         <Image style={styles.foodimg} source={item.source} />
-        <View style={{ width: "30%", alignSelf: 'center'}}>
-          <Text style={{ marginLeft: 10, fontSize: 25, fontWeight: 500 }}>{item.foodName}</Text>
+        <View style={{ width: "30%", alignSelf: 'center' }}>
+          <Text style={{ marginLeft: 10, fontSize: 25, fontWeight: '500' }}>{item.foodName}</Text>
           <Text style={{ marginLeft: 10 }}>Price: {item.price}</Text>
         </View>
         <View style={{ width: "5%", height: "23%", marginLeft: 10, alignSelf: 'center', flexDirection: 'row' }}>
           {renderStars(item.rate)}
         </View>
         <Pressable
-          style={{ width: "10%", height: "40%", alignSelf: 'center', marginLeft: 70, }}
-          
+          style={{ width: "10%", height: "40%", alignSelf: 'center', marginLeft: 70 }}
+          onPress={() => {
+            addToCart(item);
+            navigation.navigate('CartScreen', { cartItems: cartItems });
+          }}
         >
           <Image style={styles.cart} source={require('../../Images/shopping-cart.png')} />
         </Pressable>
       </View>
     );
   };
+
   return (
     <View style={{ flex: 1, width: "100%", alignItems: "center", marginTop: 70 }}>
       <View style={styles.search}>
