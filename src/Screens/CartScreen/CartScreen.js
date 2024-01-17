@@ -10,6 +10,7 @@ const CartScreen = ({ route }) => {
         const loadCartItems = async () => {
             try {
                 const storedCartItems = await AsyncStorage.getItem('cartItems');
+                console.log('Stored Cart Items:', storedCartItems);
                 if (storedCartItems) {
                     setCartItems(JSON.parse(storedCartItems));
                 }
@@ -17,9 +18,23 @@ const CartScreen = ({ route }) => {
                 console.error('Error loading cart items:', error);
             }
         };
-
+    
         loadCartItems();
     }, []);
+    
+    useEffect(() => {
+        const saveCartItems = async () => {
+            try {
+                await AsyncStorage.setItem('cartItems', JSON.stringify(cartItems));
+                console.log('Cart Items saved:', cartItems);
+            } catch (error) {
+                console.error('Error saving cart items:', error);
+            }
+        };
+    
+        saveCartItems();
+    }, [cartItems]);
+          
 
     const handleIncrease = async (item) => {
         item.quantity = (item.quantity || 1) + 1;

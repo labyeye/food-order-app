@@ -8,26 +8,46 @@ const FoodScreen = ({ route, navigation }) => {
   const [searchText, setSearchText] = useState('');
   const [cartItems, setCartItems] = useState([]);
   const navigateToCart = () => {
-    navigation.navigate('CartScreen', { cartItems: cartItems.map(item => ({ foodImage:item.source,foodName: item.foodName, price: item.price })) });
-;
+    navigation.navigate('CartScreen', { cartItems: cartItems.map(item => ({ foodImage: item.source, foodName: item.foodName, price: item.price })) });
+    ;
   };
   const addToCart = (foodItem) => {
     const isItemInCart = cartItems.some(item => item.foodId === foodItem.foodId);
-  
+
     if (!isItemInCart) {
-      setCartItems([...cartItems, { ...foodItem, quantity: 1 }]);
-      // Do not navigate to CartScreen here
+      // If the item is not in the cart, add it with quantity 1
+      setCartItems(prevCartItems => [...prevCartItems, { ...foodItem, quantity: 1 }]);
     } else {
-      console.log('Item is already in the cart:', foodItem);
+      // If the item is already in the cart, update the quantity
+      setCartItems(prevCartItems =>
+        prevCartItems.map(item =>
+          item.foodId === foodItem.foodId ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    }
+
+    // Save updated cartItems to AsyncStorage
+    saveCartItems();
+  };
+
+  // Function to save cart items to AsyncStorage
+  const saveCartItems = async () => {
+    try {
+      await AsyncStorage.setItem('cartItems', JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Error saving cart items:', error);
     }
   };
-  
+
+
+
+
   useEffect(() => {
     console.log('Updated Cart Items:', cartItems);
   }, [cartItems]);
-  
 
-  
+
+
 
   const getFoodData = async () => {
     try {
@@ -58,7 +78,7 @@ const FoodScreen = ({ route, navigation }) => {
       }
       return stars;
     };
-  
+
     return (
       <View style={styles.fooddataa}>
         <Image style={styles.foodimg} source={item.source} />
@@ -73,7 +93,7 @@ const FoodScreen = ({ route, navigation }) => {
           style={{ width: "10%", height: "40%", alignSelf: 'center', marginLeft: 70 }}
           onPress={() => {
             addToCart(item);
-            navigation.navigate('CartScreen', { cartItems: cartItems });
+            navigateToCart();
           }}
         >
           <Image style={styles.cart} source={require('../../Images/shopping-cart.png')} />
