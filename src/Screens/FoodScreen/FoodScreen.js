@@ -13,18 +13,19 @@ const FoodScreen = ({ route, navigation }) => {
   };
   const addToCart = (foodItem) => {
     const isItemInCart = cartItems.some(item => item.foodId === foodItem.foodId);
-
+  
     if (!isItemInCart) {
-        setCartItems([...cartItems, { ...foodItem, quantity: 1 }]);
+      setCartItems([...cartItems, { ...foodItem, quantity: 1 }]);
+      // Do not navigate to CartScreen here
     } else {
-        console.log('Item is already in the cart:', foodItem);
+      console.log('Item is already in the cart:', foodItem);
     }
-};
-useEffect(() => {
+  };
+  
+  useEffect(() => {
     console.log('Updated Cart Items:', cartItems);
-    navigateToCart(); 
-}, [cartItems]);
-
+  }, [cartItems]);
+  
 
   
 
